@@ -1,0 +1,206 @@
+[gd_scene format=3 uid="uid://bh61e7epbv7iq"]
+
+[ext_resource type="Script" uid="uid://bs8ulblp01rr7" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/virtual_joystick.tscn" id="2_joy"]
+
+[node name="Main" type="Node2D" unique_id=1429807849]
+script = ExtResource("1_main")
+
+[node name="MazeContainer" type="Node2D" parent="." unique_id=1351771741]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VirtualJoystick" parent="UI" instance=ExtResource("2_joy")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = -147.0
+offset_right = 139.0
+offset_bottom = -147.0
+grow_vertical = 0
+
+[node name="HUD" type="Panel" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+
+[node name="HBar" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 0
+theme_override_constants/separation = 20
+
+[node name="ObjectiveLabel" type="Label" parent="UI/HUD/HBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Objective: H2O"
+vertical_alignment = 1
+
+[node name="InventoryLabel" type="Label" parent="UI/HUD/HBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Inventory: (empty)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlHint" type="Label" parent="UI/HUD/HBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "WASD | R Reset"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ResetBtn" type="Button" parent="UI/HUD/HBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "RESET"
+
+[node name="LevelSelector" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -620.0
+offset_top = -60.0
+offset_right = 620.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="L1" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L1 "
+
+[node name="L2" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L2 "
+
+[node name="L3" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L3 "
+
+[node name="L4" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L4 "
+
+[node name="L5" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L5 "
+
+[node name="L6" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L6 "
+
+[node name="L7" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L7 "
+
+[node name="L8" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L8 "
+
+[node name="L9" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L9 "
+
+[node name="L10" type="Button" parent="UI/LevelSelector"]
+layout_mode = 2
+text = " L10 "
+
+[node name="WinOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="VBox" type="VBoxContainer" parent="UI/WinOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/WinOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "LEVEL COMPLETED!"
+horizontal_alignment = 1
+
+[node name="NextBtn" type="Button" parent="UI/WinOverlay/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CONTINUE"
+
+[node name="MasterOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0, 0.25098, 0.784314)
+
+[node name="VBox" type="VBoxContainer" parent="UI/MasterOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="UI/MasterOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "MASTER CHEMIST"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="UI/MasterOverlay/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "You have mastered all 10 stages!"
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="UI/MasterOverlay/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "RESTART GAME"

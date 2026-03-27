@@ -1,0 +1,15 @@
+# Godot-specific ignores
+.godot/
+*.import/
+export_presets.cfg
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+
+godot_4.6.1/

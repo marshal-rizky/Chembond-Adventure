@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/maze_manager.gd" id="1_fgl6e"]
+[ext_resource type="Texture2D" path="res://assets/tiles.png" id="2_l3biw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylah7"]
+texture = ExtResource("2_l3biw")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vqf1n"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ylah7")
+
+[node name="Maze" type="Node2D" unique_id=1868713127]
+script = ExtResource("1_fgl6e")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1371512974]
+tile_set = SubResource("TileSet_vqf1n")
