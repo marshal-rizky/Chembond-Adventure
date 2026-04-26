@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://bh61e7epbv7iq"]
+[gd_scene load_steps=4 format=3 uid="uid://bh61e7epbv7iq"]
 
 [ext_resource type="Script" uid="uid://bs8ulblp01rr7" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/virtual_joystick.tscn" id="2_joy"]
+[ext_resource type="Script" path="res://scripts/tutorial_manager.gd" id="3_tm"]
 
 [node name="Main" type="Node2D" unique_id=1429807849]
 script = ExtResource("1_main")
@@ -204,3 +205,95 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "RESTART GAME"
+
+[node name="TutorialManager" type="Node" parent="UI"]
+visible = false
+script = ExtResource("3_tm")
+
+[node name="TutorialWinOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.15, 0.1, 0.85)
+
+[node name="VBox" type="VBoxContainer" parent="UI/TutorialWinOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/TutorialWinOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 36
+text = "Tutorial Complete!"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="UI/TutorialWinOverlay/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "You're ready to play ChemBond Adventure."
+horizontal_alignment = 1
+
+[node name="MenuBtn" type="Button" parent="UI/TutorialWinOverlay/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Back to Menu"
+
+[node name="LegendaryOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.1, 0.0, 0.85)
+
+[node name="VBox" type="VBoxContainer" parent="UI/LegendaryOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="UI/LegendaryOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "LEGENDARY CHEMIST"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="UI/LegendaryOverlay/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "You have mastered all of ChemBond Adventure!"
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="UI/LegendaryOverlay/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Main Menu"

@@ -13,18 +13,23 @@ const TRAIL_INTERVAL: float = 0.05
 var touch_vector: Vector2 = Vector2.ZERO
 var prev_position: Vector2 = Vector2.ZERO
 
+var input_dir: Vector2 = Vector2.ZERO   # exposed for mirror mechanic
+var mirror_input: bool = false
+var mirror_source: Node = null
+
 func _physics_process(delta):
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	prev_position = global_position
-	
-	# Combine Keyboard and Touch Input
-	var kb_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var final_direction = kb_direction
-	
-	if touch_vector.length() > 0:
-		final_direction = touch_vector
-		
-	velocity = final_direction * speed
+
+	if mirror_input and is_instance_valid(mirror_source):
+		input_dir = Vector2(-mirror_source.input_dir.x, mirror_source.input_dir.y)
+	else:
+		var kb_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		input_dir = kb_direction
+		if touch_vector.length() > 0:
+			input_dir = touch_vector
+
+	velocity = input_dir * speed
 	move_and_slide()
 
 	var actually_moved = global_position.distance_to(prev_position) > 0.1

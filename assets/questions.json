@@ -8,5 +8,8 @@
   { "id": 7, "formula": "NH4Cl", "required": {"N": 1, "H": 4, "Cl": 1}, "question": "What salt is used in cough medicine and fertilizers?" },
   { "id": 8, "formula": "Ca(OH)2", "required": {"Ca": 1, "O": 2, "H": 2}, "question": "What compound is mixed into cement and treats acidic soil?" },
   { "id": 9, "formula": "Na2CO3", "required": {"Na": 2, "C": 1, "O": 3}, "question": "What washing powder compound softens hard water?" },
-  { "id": 10, "formula": "CH3COOH", "required": {"C": 2, "H": 4, "O": 2}, "question": "What acid gives vinegar its sour taste and sharp smell?" }
+  { "id": 10, "formula": "CH3COOH", "required": {"C": 2, "H": 4, "O": 2}, "question": "What acid gives vinegar its sour taste and sharp smell?" },
+  { "id": 11, "formula": "C6H12O6", "required": {"C": 6, "H": 12, "O": 6}, "question": "What simple sugar fuels every living cell in your body?", "legend": true },
+  { "id": 12, "formula": "Ca3(PO4)2", "required": {"Ca": 3, "P": 2, "O": 8}, "question": "What mineral compound forms your bones and teeth?", "legend": true },
+  { "id": 13, "formula": "Al2(SO4)3", "required": {"Al": 2, "S": 3, "O": 12}, "question": "What compound is added to water treatment plants to remove impurities?", "legend": true }
 ]

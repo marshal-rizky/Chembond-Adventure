@@ -19,12 +19,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -150.0
+offset_top = -200.0
 offset_right = 200.0
-offset_bottom = 150.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
@@ -38,6 +38,19 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "START ADVENTURE"
+
+[node name="TutorialBtn" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "? HOW TO PLAY"
+
+[node name="LegendBtn" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⚡ LEGEND"
+modulate = Color(0.8, 0.6, 1.0, 1.0)
 
 [node name="QuitBtn" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -61,3 +74,56 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
 text = "v1.0 - ChemBond Adventure"
 horizontal_alignment = 1
+
+[node name="LegendRulesPopup" type="Panel" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="LegendRulesPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="LegendRulesPopup/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Legend Mode Rules"
+horizontal_alignment = 1
+
+[node name="Rules" type="RichTextLabel" parent="LegendRulesPopup/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Two characters appear — you control the [b]LEFT[/b] one.
+
+Moving [b]left or right[/b] also moves the other character in the [b]opposite[/b] direction.
+Moving [b]up or down[/b] moves [b]both[/b] the same way.
+
+Atoms are split between both halves of the maze.
+Both characters collect into a [b]shared inventory[/b].
+
+Reach the center gate [b]together[/b] to win."
+
+[node name="GotItBtn" type="Button" parent="LegendRulesPopup/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Got it!"

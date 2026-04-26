@@ -18,7 +18,9 @@ var element_colors = {
 	"K": Color.MEDIUM_PURPLE,
 	"Fe": Color.DARK_GRAY,
 	"Cu": Color.CORAL,
-	"Zn": Color.LIGHT_SLATE_GRAY
+	"Zn": Color.LIGHT_SLATE_GRAY,
+	"P": Color.LIME_GREEN,
+	"Al": Color.SILVER
 }
 
 func _ready():
