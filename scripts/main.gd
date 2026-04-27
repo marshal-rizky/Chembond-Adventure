@@ -22,6 +22,7 @@ func _ready():
 	$UI/WinOverlay/VBox/NextBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_next_level_pressed())
 	$UI/MasterOverlay/VBox/RestartBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_restart_game_pressed())
 	$UI/HUD/HBar/ResetBtn.pressed.connect(func(): AudioManager.play_sfx("reset"); get_tree().reload_current_scene())
+	$UI/HUD/HBar/LeaveBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _go_to_menu())
 
 	$UI/TutorialWinOverlay/VBox/MenuBtn.pressed.connect(func():
 		AudioManager.play_sfx("ui_click")
@@ -128,7 +129,6 @@ func _setup_legend_second_player(maze_data: Dictionary, player_left: CharacterBo
 func _setup_tutorial(player: CharacterBody2D, exit_gate: Node):
 	var tm = $UI/TutorialManager
 	if not tm: return
-	tm.visible = true
 
 	var panel = Panel.new()
 	panel.name = "TutorialPanel"
@@ -270,6 +270,10 @@ func transition_to_next():
 		GameManager.next_level()
 		get_tree().reload_current_scene()
 	)
+
+func _go_to_menu():
+	GameManager.reset_mode_flags()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_restart_game_pressed():
 	GameManager.reset_mode_flags()

@@ -22,7 +22,7 @@ func _physics_process(delta):
 	prev_position = global_position
 
 	if mirror_input and is_instance_valid(mirror_source):
-		input_dir = Vector2(-mirror_source.input_dir.x, mirror_source.input_dir.y)
+		input_dir = Vector2(-mirror_source.input_dir.x, -mirror_source.input_dir.y)
 	else:
 		var kb_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		input_dir = kb_direction

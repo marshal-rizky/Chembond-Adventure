@@ -30,12 +30,12 @@ var steps = [
 		"arrow_target": "inventory"
 	},
 	{
-		"text": "[color=yellow]⚠ Warning:[/color] Only collect the atoms you [b]need[/b]. Extra atoms will keep the gate [b]locked![/b]\n\n[b]Tip:[/b] Don't take molecules you don't need.",
+		"text": "[color=yellow]⚠ Decoy Alert![/color] There is a [b]decoy[/b] atom hidden in the maze.\n\nWalk over it [b]on purpose[/b] — see what happens to the gate!",
 		"trigger": "tap",
 		"arrow_target": ""
 	},
 	{
-		"text": "Picked up the wrong atom? Press [b]R[/b] or tap [b]Reset[/b] to restart the level.\n\n[b]Tip:[/b] Reset if you think you got the wrong molecules.",
+		"text": "[color=red]The gate stayed [b]LOCKED![/b][/color] Any extra atom in your inventory blocks the exit.\n\nPress [b]R[/b] or tap [b]Reset[/b] to clear your inventory and try again.",
 		"trigger": "tap",
 		"arrow_target": "reset"
 	},
@@ -44,7 +44,7 @@ var steps = [
 		"trigger": "tap",
 		"arrow_target": ""
 	}
-	# Step 7 (win) is handled by main.gd showing TutorialWinOverlay
+	# Step 6 (win) is handled by main.gd showing TutorialWinOverlay
 ]
 
 var atom_collected_once: bool = false
