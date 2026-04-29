@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqh7s7kcn2drx"
-path="res://.godot/imported/gate_locked.png-ae56d418c1b99cde713502bd9e1dc60c.ctex"
+uid="uid://cmulrh86pbm3c"
+path="res://.godot/imported/frame_002.png-332270eb4e0440d9b85c371fd1865a92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/gate_locked.png"
-dest_files=["res://.godot/imported/gate_locked.png-ae56d418c1b99cde713502bd9e1dc60c.ctex"]
+source_file="res://assets/sprites/scientist/animations/run/west/frame_002.png"
+dest_files=["res://.godot/imported/frame_002.png-332270eb4e0440d9b85c371fd1865a92.ctex"]
 
 [params]
 

@@ -17,6 +17,9 @@ var input_dir: Vector2 = Vector2.ZERO   # exposed for mirror mechanic
 var mirror_input: bool = false
 var mirror_source: Node = null
 
+var is_running: bool = false
+var _last_dir: String = "south"  # remembered for idle facing
+
 func _physics_process(delta):
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	prev_position = global_position
@@ -31,6 +34,7 @@ func _physics_process(delta):
 
 	velocity = input_dir * speed
 	move_and_slide()
+	_update_animation()
 
 	var actually_moved = global_position.distance_to(prev_position) > 0.1
 	if actually_moved:
@@ -97,6 +101,11 @@ func _on_pickup_zone_area_exited(area):
 		nearby_elements.erase(area)
 
 func _on_element_collected(symbol):
+	# Play pick-up animation if available
+	var anim = get_node_or_null("AnimatedSprite2D")
+	if anim and anim.sprite_frames and anim.sprite_frames.has_animation("collect"):
+		anim.play("collect")
+		await anim.animation_finished
 	if not collected_elements.has(symbol):
 		collected_elements[symbol] = 0
 	collected_elements[symbol] += 1
@@ -108,3 +117,37 @@ func get_collected() -> Dictionary:
 func reset():
 	collected_elements.clear()
 	velocity = Vector2.ZERO
+
+func set_running(running: bool):
+	is_running = running
+
+func _get_dir_name(vel: Vector2) -> String:
+	if abs(vel.x) > abs(vel.y):
+		return "east" if vel.x > 0 else "west"
+	return "south" if vel.y > 0 else "north"
+
+func _update_animation():
+	var anim = get_node_or_null("AnimatedSprite2D")
+	if not anim: return
+
+	if is_running:
+		var dir = _get_dir_name(velocity if velocity.length() > 10 else Vector2.DOWN)
+		var run_anim = "run_" + dir
+		if anim.animation != run_anim:
+			anim.play(run_anim)
+		return
+
+	if velocity.length() > 10:
+		var dir = _get_dir_name(velocity)
+		_last_dir = dir
+		var walk_anim = "walk_" + dir
+		if anim.animation != walk_anim:
+			anim.play(walk_anim)
+	else:
+		var idle_anim = "idle_" + _last_dir
+		if anim.sprite_frames and anim.sprite_frames.has_animation(idle_anim):
+			if anim.animation != idle_anim or not anim.is_playing():
+				anim.play(idle_anim)
+		else:
+			if anim.animation != "idle" or not anim.is_playing():
+				anim.play("idle")

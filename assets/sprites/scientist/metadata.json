@@ -1,0 +1,135 @@
+{
+  "character": {
+    "id": "96105254-4d27-495a-98c6-61df38902d5b",
+    "name": "top-down scientist wearing white lab coat, yellow hard hat, small backpack, pixel art style",
+    "prompt": "top-down scientist wearing white lab coat, yellow hard hat, small backpack, pixel art style",
+    "size": {
+      "width": 48,
+      "height": 48
+    },
+    "template_id": "mannequin",
+    "directions": 4,
+    "view": "low top-down",
+    "created_at": "2026-04-28T12:59:31.786204+00:00"
+  },
+  "frames": {
+    "rotations": {
+      "south": "rotations/south.png",
+      "west": "rotations/west.png",
+      "east": "rotations/east.png",
+      "north": "rotations/north.png"
+    },
+    "animations": {
+      "scientist_walking_cautiously_through_lab_corridors-2c449804": {
+        "east": [
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/east/frame_000.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/east/frame_001.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/east/frame_002.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/east/frame_003.png"
+        ],
+        "south": [
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/south/frame_000.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/south/frame_001.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/south/frame_002.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/south/frame_003.png"
+        ],
+        "north": [
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/north/frame_000.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/north/frame_001.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/north/frame_002.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/north/frame_003.png"
+        ],
+        "west": [
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/west/frame_000.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/west/frame_001.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/west/frame_002.png",
+          "animations/scientist_walking_cautiously_through_lab_corridors-2c449804/west/frame_003.png"
+        ]
+      },
+      "animating-483302b8": {
+        "west": [
+          "animations/animating-483302b8/west/frame_000.png",
+          "animations/animating-483302b8/west/frame_001.png",
+          "animations/animating-483302b8/west/frame_002.png",
+          "animations/animating-483302b8/west/frame_003.png",
+          "animations/animating-483302b8/west/frame_004.png"
+        ],
+        "north": [
+          "animations/animating-483302b8/north/frame_000.png",
+          "animations/animating-483302b8/north/frame_001.png",
+          "animations/animating-483302b8/north/frame_002.png",
+          "animations/animating-483302b8/north/frame_003.png",
+          "animations/animating-483302b8/north/frame_004.png"
+        ],
+        "south": [
+          "animations/animating-483302b8/south/frame_000.png",
+          "animations/animating-483302b8/south/frame_001.png",
+          "animations/animating-483302b8/south/frame_002.png",
+          "animations/animating-483302b8/south/frame_003.png",
+          "animations/animating-483302b8/south/frame_004.png"
+        ],
+        "east": [
+          "animations/animating-483302b8/east/frame_000.png",
+          "animations/animating-483302b8/east/frame_001.png",
+          "animations/animating-483302b8/east/frame_002.png",
+          "animations/animating-483302b8/east/frame_003.png",
+          "animations/animating-483302b8/east/frame_004.png"
+        ]
+      },
+      "animating-32b2fe30": {
+        "east": [
+          "animations/animating-32b2fe30/east/frame_000.png",
+          "animations/animating-32b2fe30/east/frame_001.png",
+          "animations/animating-32b2fe30/east/frame_002.png",
+          "animations/animating-32b2fe30/east/frame_003.png"
+        ],
+        "south": [
+          "animations/animating-32b2fe30/south/frame_000.png",
+          "animations/animating-32b2fe30/south/frame_001.png",
+          "animations/animating-32b2fe30/south/frame_002.png",
+          "animations/animating-32b2fe30/south/frame_003.png"
+        ],
+        "north": [
+          "animations/animating-32b2fe30/north/frame_000.png",
+          "animations/animating-32b2fe30/north/frame_001.png",
+          "animations/animating-32b2fe30/north/frame_002.png",
+          "animations/animating-32b2fe30/north/frame_003.png"
+        ],
+        "west": [
+          "animations/animating-32b2fe30/west/frame_000.png",
+          "animations/animating-32b2fe30/west/frame_001.png",
+          "animations/animating-32b2fe30/west/frame_002.png",
+          "animations/animating-32b2fe30/west/frame_003.png"
+        ]
+      },
+      "running-6054735e": {
+        "north": [
+          "animations/running-6054735e/north/frame_000.png",
+          "animations/running-6054735e/north/frame_001.png",
+          "animations/running-6054735e/north/frame_002.png",
+          "animations/running-6054735e/north/frame_003.png"
+        ],
+        "south": [
+          "animations/running-6054735e/south/frame_000.png",
+          "animations/running-6054735e/south/frame_001.png",
+          "animations/running-6054735e/south/frame_002.png",
+          "animations/running-6054735e/south/frame_003.png"
+        ],
+        "east": [
+          "animations/running-6054735e/east/frame_000.png",
+          "animations/running-6054735e/east/frame_001.png",
+          "animations/running-6054735e/east/frame_002.png",
+          "animations/running-6054735e/east/frame_003.png"
+        ],
+        "west": [
+          "animations/running-6054735e/west/frame_000.png",
+          "animations/running-6054735e/west/frame_001.png",
+          "animations/running-6054735e/west/frame_002.png",
+          "animations/running-6054735e/west/frame_003.png"
+        ]
+      }
+    }
+  },
+  "export_version": "2.0",
+  "export_date": "2026-04-28T23:49:36.378069"
+}

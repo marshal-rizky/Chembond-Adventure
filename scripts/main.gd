@@ -12,8 +12,8 @@ func _ready():
 	$UI/MasterOverlay.theme = game_theme
 
 	var navbar_style = StyleBoxFlat.new()
-	navbar_style.bg_color = Color(0.04, 0.04, 0.12, 0.75)
-	navbar_style.border_color = Color(0.0, 0.4, 0.5, 0.4)
+	navbar_style.bg_color = Color(0.04, 0.02, 0.02, 0.85)
+	navbar_style.border_color = Color(0.5, 0.0, 0.0, 0.4)
 	navbar_style.border_width_bottom = 1
 	navbar_style.set_corner_radius_all(0)
 	navbar_style.set_content_margin_all(6)
@@ -174,6 +174,7 @@ func setup_vignette():
 	mat.set_shader_parameter("strength", 0.5)
 	mat.set_shader_parameter("radius", 0.65)
 	mat.set_shader_parameter("softness", 0.45)
+	mat.set_shader_parameter("tint_color", Color(0.15, 0.03, 0.03, 1.0))
 	vignette.material = mat
 	vignette.color = Color.WHITE
 	$UI.add_child(vignette)
@@ -217,6 +218,14 @@ func _on_player_collected(_symbol):
 			if tm: tm.notify_gate_opened()
 
 func _on_exit_reached():
+	# Trigger run animation on player(s) as they escape
+	var player = current_maze.get_node_or_null("Player")
+	if player and player.has_method("set_running"):
+		player.set_running(true)
+	var player_right = current_maze.get_node_or_null("PlayerRight")
+	if player_right and player_right.has_method("set_running"):
+		player_right.set_running(true)
+
 	var flash = ColorRect.new()
 	flash.color = Color.WHITE
 	flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

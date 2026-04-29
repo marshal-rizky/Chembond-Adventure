@@ -14,6 +14,7 @@ var tex_open: Texture2D = preload("res://assets/sprites/gate_open.png")
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	$Sprite2D.scale = Vector2(0.5, 0.5)  # sprites generated at 32px, display at 16px
 	update_visuals()
 	start_pulse()
 

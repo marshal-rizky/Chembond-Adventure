@@ -145,7 +145,7 @@ func load_tutorial_maze():
 			var coord = Vector2i(x, y)
 			match c:
 				"#":
-					tilemap.set_cell(coord, 0, Vector2i(1, 0))
+					tilemap.set_cell(coord, 0, Vector2i(0, 3))
 					var wall_body = StaticBody2D.new()
 					wall_body.position = Vector2(x * 16 + 8, y * 16 + 8)
 					var col_shape = CollisionShape2D.new()
@@ -156,7 +156,7 @@ func load_tutorial_maze():
 					tilemap.add_child(wall_body)
 				".", "S", "E":
 					floor_tiles.append(coord)
-					tilemap.set_cell(coord, 0, Vector2i(0, 0))
+					tilemap.set_cell(coord, 0, Vector2i(2, 1))
 					var floor_bg = ColorRect.new()
 					floor_bg.size = Vector2(16, 16)
 					floor_bg.position = Vector2(x * 16, y * 16)
@@ -165,10 +165,10 @@ func load_tutorial_maze():
 					tilemap.add_child(floor_bg)
 					if c == "S":
 						start_pos = coord
-						tilemap.set_cell(coord, 0, Vector2i(2, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 					elif c == "E":
 						exit_pos = coord
-						tilemap.set_cell(coord, 0, Vector2i(3, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 
 	print("Loaded tutorial maze")
 	return {"walkable": floor_tiles, "start": start_pos, "exit": exit_pos, "name": tutorial_layout.name}
@@ -197,7 +197,7 @@ func load_legend_maze(index: int):
 			var coord = Vector2i(x, y)
 			match c:
 				"#":
-					tilemap.set_cell(coord, 0, Vector2i(1, 0))
+					tilemap.set_cell(coord, 0, Vector2i(0, 3))
 					var wall_body = StaticBody2D.new()
 					wall_body.position = Vector2(x * 16 + 8, y * 16 + 8)
 					var col_shape = CollisionShape2D.new()
@@ -208,7 +208,7 @@ func load_legend_maze(index: int):
 					tilemap.add_child(wall_body)
 				".", "S", "E":
 					floor_tiles.append(coord)
-					tilemap.set_cell(coord, 0, Vector2i(0, 0))
+					tilemap.set_cell(coord, 0, Vector2i(2, 1))
 					var floor_bg = ColorRect.new()
 					floor_bg.size = Vector2(16, 16)
 					floor_bg.position = Vector2(x * 16, y * 16)
@@ -216,11 +216,11 @@ func load_legend_maze(index: int):
 					floor_bg.z_index = -1
 					tilemap.add_child(floor_bg)
 					if c == "S":
-						tilemap.set_cell(coord, 0, Vector2i(2, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 						found_starts.append(coord)
 					elif c == "E":
 						exit_pos = coord
-						tilemap.set_cell(coord, 0, Vector2i(3, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 
 	if found_starts.size() >= 2:
 		if found_starts[0].x < found_starts[1].x:
@@ -263,7 +263,7 @@ func load_maze(index: int):
 			
 			match c:
 				"#": # Wall
-					tilemap.set_cell(coord, 0, Vector2i(1, 0))
+					tilemap.set_cell(coord, 0, Vector2i(0, 3))
 					var wall_body = StaticBody2D.new()
 					wall_body.position = Vector2(x * 16 + 8, y * 16 + 8)
 					var col_shape = CollisionShape2D.new()
@@ -275,7 +275,7 @@ func load_maze(index: int):
 					
 				".", "S", "E", "*": # Walkable
 					floor_tiles.append(coord)
-					tilemap.set_cell(coord, 0, Vector2i(0,0))
+					tilemap.set_cell(coord, 0, Vector2i(2, 1))
 					
 					# Checkerboard Pattern Logic
 					var floor_bg = ColorRect.new()
@@ -290,10 +290,10 @@ func load_maze(index: int):
 					
 					if c == "S": 
 						start_pos = coord
-						tilemap.set_cell(coord, 0, Vector2i(2, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 					elif c == "E": 
 						exit_pos = coord
-						tilemap.set_cell(coord, 0, Vector2i(3, 0))
+						tilemap.set_cell(coord, 0, Vector2i(2, 1))
 			
 	print("Loaded ASCII Maze: ", layout.name)
 	return {

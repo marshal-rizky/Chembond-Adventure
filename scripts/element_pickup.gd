@@ -27,6 +27,7 @@ func _ready():
 	$Label.text = element_symbol
 	var color = element_colors.get(element_symbol, Color.WHITE)
 	$Sprite2D.modulate = color
+	$Sprite2D.scale = Vector2(0.5, 0.5)  # sprites generated at 32px, display at 16px
 	
 	# Bobbing animation (Visual Only - keeps collision center static)
 	var tween = create_tween().set_loops()

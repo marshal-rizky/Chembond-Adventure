@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nvimarf7hpv6"
-path="res://.godot/imported/gate_open.png-cbf065a7516ad8e82e0b2e1227689773.ctex"
+uid="uid://bxiopmp0p7q5j"
+path="res://.godot/imported/frame_004.png-96c7bf4b1f7ebddc2e601a0f9855509c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/gate_open.png"
-dest_files=["res://.godot/imported/gate_open.png-cbf065a7516ad8e82e0b2e1227689773.ctex"]
+source_file="res://assets/sprites/scientist/animations/collect/west/frame_004.png"
+dest_files=["res://.godot/imported/frame_004.png-96c7bf4b1f7ebddc2e601a0f9855509c.ctex"]
 
 [params]
 

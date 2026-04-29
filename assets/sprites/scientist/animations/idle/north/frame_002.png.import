@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eaiaormsn7qc"
-path="res://.godot/imported/joystick_handle.png-4e9e1441d39e6e84380f756c09abdd15.ctex"
+uid="uid://bdnjasysuhr6n"
+path="res://.godot/imported/frame_002.png-266e1d9f0906f8efdc6e561b097a2524.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/joystick_handle.png"
-dest_files=["res://.godot/imported/joystick_handle.png-4e9e1441d39e6e84380f756c09abdd15.ctex"]
+source_file="res://assets/sprites/scientist/animations/idle/north/frame_002.png"
+dest_files=["res://.godot/imported/frame_002.png-266e1d9f0906f8efdc6e561b097a2524.ctex"]
 
 [params]
 

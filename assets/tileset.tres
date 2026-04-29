@@ -1,14 +1,26 @@
 [gd_resource type="TileSet" format=3]
 
-[ext_resource type="Texture2D" path="res://assets/tiles.png" id="1_l70by"]
+[ext_resource type="Texture2D" path="res://assets/tiles_wang.png" id="1_wang"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylah7"]
-texture = ExtResource("1_l70by")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wang"]
+texture = ExtResource("1_wang")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_ylah7")
+sources/0 = SubResource("TileSetAtlasSource_wang")
