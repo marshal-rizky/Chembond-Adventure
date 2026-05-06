@@ -81,24 +81,35 @@ func spawn_floating_atoms():
 		"Al": Color.SILVER
 	}
 	var symbols = element_colors.keys()
-	for i in range(35):
-		var sym: String = symbols[randi() % symbols.size()]
-		var col: Color = element_colors[sym]
-		col.a = randf_range(0.04, 0.08)
 
-		var lbl = Label.new()
-		lbl.text = sym
-		lbl.add_theme_font_size_override("font_size", randi_range(28, 52))
-		lbl.add_theme_color_override("font_color", col)
-		lbl.position = Vector2(randf_range(0, 1280), randf_range(0, 720))
-		lbl.z_index = -5
-		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(lbl)
+	# Grid: 7 cols × 5 rows = 35 cells — one atom per cell for even coverage
+	var cols := 7
+	var rows := 5
+	var cell_w := 1280.0 / cols
+	var cell_h := 720.0 / rows
 
-		var tween = create_tween().set_loops()
-		var target = lbl.position + Vector2(randf_range(-150, 150), randf_range(-150, 150))
-		tween.tween_property(lbl, "position", target, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(lbl, "position", lbl.position, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
+	for row in range(rows):
+		for col in range(cols):
+			var sym: String = symbols[randi() % symbols.size()]
+			var col_val: Color = element_colors[sym]
+			col_val.a = randf_range(0.12, 0.22)
+
+			var px := col * cell_w + randf_range(cell_w * 0.1, cell_w * 0.9)
+			var py := row * cell_h + randf_range(cell_h * 0.1, cell_h * 0.9)
+
+			var lbl = Label.new()
+			lbl.text = sym
+			lbl.add_theme_font_size_override("font_size", randi_range(28, 52))
+			lbl.add_theme_color_override("font_color", col_val)
+			lbl.position = Vector2(px, py)
+			lbl.z_index = -5
+			lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			add_child(lbl)
+
+			var tween = create_tween().set_loops()
+			var target = lbl.position + Vector2(randf_range(-80, 80), randf_range(-60, 60))
+			tween.tween_property(lbl, "position", target, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(lbl, "position", lbl.position, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
 
 func _on_start_pressed():
 	GameManager.reset_mode_flags()

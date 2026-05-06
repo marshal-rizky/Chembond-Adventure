@@ -185,8 +185,8 @@ func _setup_tutorial(player: CharacterBody2D, exit_gate: Node):
 	dots_margin.add_child(dots_hbox)
 	outer_vbox.add_child(dots_margin)
 
-	# Create 5 dot rects
-	for i in range(5):
+	# Create one dot per tutorial step
+	for i in range(tm.steps.size()):
 		var dot = ColorRect.new()
 		dot.custom_minimum_size = Vector2(20, 3)
 		dot.color = Color("#1d3554")
