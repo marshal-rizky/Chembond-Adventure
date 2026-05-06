@@ -4,6 +4,8 @@ signal collected(element_symbol)
 
 @export var element_symbol: String = "H"
 
+var _tutorial_tween: Tween = null
+
 var element_colors = {
 	"H": Color.CYAN,
 	"O": Color.RED,
@@ -85,3 +87,23 @@ func play_collect_effect():
 		pt.tween_property(particle, "modulate:a", 0.0, 0.4)
 		pt.tween_property(particle, "scale", Vector2(0.2, 0.2), 0.4)
 		pt.tween_callback(particle.queue_free).set_delay(0.4)
+
+func set_tutorial_highlight(is_required: bool):
+	if _tutorial_tween:
+		_tutorial_tween.kill()
+		_tutorial_tween = null
+	if is_required:
+		modulate.a = 1.0
+		scale = Vector2(1.0, 1.0)
+		_tutorial_tween = create_tween().set_loops()
+		_tutorial_tween.tween_property(self, "scale", Vector2(1.18, 1.18), 0.5).set_ease(Tween.EASE_IN_OUT)
+		_tutorial_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.5).set_ease(Tween.EASE_IN_OUT)
+	else:
+		modulate.a = 0.4
+
+func clear_tutorial_highlight():
+	if _tutorial_tween:
+		_tutorial_tween.kill()
+		_tutorial_tween = null
+	modulate.a = 1.0
+	scale = Vector2(1.0, 1.0)
