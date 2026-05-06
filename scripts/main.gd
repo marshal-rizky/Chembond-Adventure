@@ -10,19 +10,30 @@ func _ready():
 	$UI/LevelSelector.theme = game_theme
 	$UI/WinOverlay.theme = game_theme
 	$UI/MasterOverlay.theme = game_theme
+	$UI/TutorialWinOverlay.theme = game_theme
+	$UI/LegendaryOverlay.theme = game_theme
 
 	var navbar_style = StyleBoxFlat.new()
-	navbar_style.bg_color = Color(0.04, 0.02, 0.02, 0.85)
-	navbar_style.border_color = Color(0.5, 0.0, 0.0, 0.4)
-	navbar_style.border_width_bottom = 1
+	navbar_style.bg_color = Color(0.027, 0.043, 0.075, 0.92)
+	navbar_style.border_color = UITheme.BORDER
+	navbar_style.border_width_bottom = 2
 	navbar_style.set_corner_radius_all(0)
 	navbar_style.set_content_margin_all(6)
 	$UI/HUD.add_theme_stylebox_override("panel", navbar_style)
+
+	# HUD label retint to match terminal palette
+	$UI/HUD/HBar/ObjectiveLabel.add_theme_color_override("font_color", UITheme.TEXT_HI)
+	$UI/HUD/HBar/InventoryLabel.add_theme_color_override("font_color", UITheme.TEXT)
+	$UI/HUD/HBar/ControlHint.add_theme_color_override("font_color", UITheme.TEXT_DIM)
 
 	$UI/WinOverlay/VBox/NextBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_next_level_pressed())
 	$UI/MasterOverlay/VBox/RestartBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_restart_game_pressed())
 	$UI/HUD/HBar/ResetBtn.pressed.connect(func(): AudioManager.play_sfx("reset"); get_tree().reload_current_scene())
 	$UI/HUD/HBar/LeaveBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _go_to_menu())
+
+	$UI/HUD/HBar/ResetBtn.text = "↺ Reset"
+	$UI/HUD/HBar/LeaveBtn.text = "✕ Leave"
+	$UI/WinOverlay/VBox/NextBtn.text = "Next →"
 
 	$UI/TutorialWinOverlay/VBox/MenuBtn.pressed.connect(func():
 		AudioManager.play_sfx("ui_click")
@@ -37,6 +48,11 @@ func _ready():
 	)
 
 	var selector = $UI/LevelSelector
+	if GameManager.is_tutorial:
+		selector.visible = false
+	elif GameManager.is_legend_mode:
+		for i in range(selector.get_child_count()):
+			selector.get_child(i).visible = i < 3
 	for i in range(selector.get_child_count()):
 		var btn = selector.get_child(i)
 		var level_idx = i
@@ -133,34 +149,89 @@ func _setup_tutorial(player: CharacterBody2D, exit_gate: Node):
 	var panel = Panel.new()
 	panel.name = "TutorialPanel"
 	panel.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	panel.custom_minimum_size = Vector2(0, 100)
-	panel.offset_top = -110
+	panel.custom_minimum_size = Vector2(0, 110)
+	panel.offset_top = -120
 	panel.offset_bottom = -10
-	panel.modulate = Color(1, 1, 1, 0.92)
+
+	# HUD-matching dark style with teal top border
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color("#070b14")
+	panel_style.border_color = Color("#14b8a6")
+	panel_style.border_width_top = 1
+	panel_style.border_width_bottom = 0
+	panel_style.border_width_left = 0
+	panel_style.border_width_right = 0
+	panel_style.set_corner_radius_all(0)
+	panel_style.set_content_margin_all(0)
+	panel.add_theme_stylebox_override("panel", panel_style)
 	tm.add_child(panel)
+
+	# Outer VBox: dots row + content row
+	var outer_vbox = VBoxContainer.new()
+	outer_vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	outer_vbox.add_theme_constant_override("separation", 0)
+	panel.add_child(outer_vbox)
+
+	# Step dots row
+	var dots_hbox = HBoxContainer.new()
+	dots_hbox.name = "StepDots"
+	dots_hbox.add_theme_constant_override("separation", 4)
+	dots_hbox.custom_minimum_size = Vector2(0, 9)
+	var dots_margin = MarginContainer.new()
+	dots_margin.add_theme_constant_override("margin_left", 14)
+	dots_margin.add_theme_constant_override("margin_top", 5)
+	dots_margin.add_theme_constant_override("margin_bottom", 0)
+	dots_margin.add_theme_constant_override("margin_right", 0)
+	dots_margin.add_child(dots_hbox)
+	outer_vbox.add_child(dots_margin)
+
+	# Create 5 dot rects
+	for i in range(5):
+		var dot = ColorRect.new()
+		dot.custom_minimum_size = Vector2(20, 3)
+		dot.color = Color("#1d3554")
+		dots_hbox.add_child(dot)
+
+	# Content row: label + button
+	var content_hbox = HBoxContainer.new()
+	content_hbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	content_hbox.add_theme_constant_override("separation", 12)
+	var content_margin = MarginContainer.new()
+	content_margin.add_theme_constant_override("margin_left", 14)
+	content_margin.add_theme_constant_override("margin_right", 14)
+	content_margin.add_theme_constant_override("margin_top", 6)
+	content_margin.add_theme_constant_override("margin_bottom", 8)
+	content_margin.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	content_margin.add_child(content_hbox)
+	outer_vbox.add_child(content_margin)
 
 	var lbl = RichTextLabel.new()
 	lbl.bbcode_enabled = true
-	lbl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	lbl.offset_left = 16
-	lbl.offset_right = -120
-	lbl.offset_top = 8
-	lbl.offset_bottom = -8
-	panel.add_child(lbl)
+	lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lbl.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	lbl.scroll_active = false
+	content_hbox.add_child(lbl)
 
 	var btn = Button.new()
-	btn.text = "OK"
-	btn.set_anchor_and_offset(SIDE_RIGHT, 1.0, -8)
-	btn.set_anchor_and_offset(SIDE_LEFT, 1.0, -100)
-	btn.set_anchor_and_offset(SIDE_TOP, 0.5, -20)
-	btn.set_anchor_and_offset(SIDE_BOTTOM, 0.5, 20)
-	panel.add_child(btn)
+	btn.text = "OK ▶"
+	btn.custom_minimum_size = Vector2(80, 0)
+	btn.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	btn.theme = UITheme.create_game_theme()
+	content_hbox.add_child(btn)
 
 	tm.panel = panel
 	tm.panel_label = lbl
 	tm.dismiss_btn = btn
+	tm.step_dots_container = dots_hbox
 	btn.pressed.connect(tm._on_dismiss_pressed)
-	tm.setup(player, exit_gate)
+
+	var pickups: Array = []
+	for child in current_maze.get_children():
+		if child.has_method("set_tutorial_highlight"):
+			pickups.append(child)
+
+	var required = GameManager.get_current_question().required
+	tm.setup(player, exit_gate, required, pickups)
 
 func setup_vignette():
 	if get_node_or_null("UI/Vignette"): return
@@ -290,7 +361,10 @@ func _on_restart_game_pressed():
 	get_tree().call_deferred("reload_current_scene")
 
 func _on_level_jump(index: int):
-	GameManager.current_level = index
+	if GameManager.is_legend_mode:
+		GameManager.legend_level = index
+	else:
+		GameManager.current_level = index
 	get_tree().call_deferred("reload_current_scene")
 
 func format_inventory(inventory: Dictionary) -> String:

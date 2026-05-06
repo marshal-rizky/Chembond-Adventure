@@ -39,11 +39,11 @@ func _ready():
 		music_player.bus = "Master"
 	add_child(music_player)
 
-func play_sfx(name: String):
-	if sfx_players.has(name):
-		var player = sfx_players[name]
-		if name == "footstep" and player.playing:
-			return  # Don't overlap footsteps
+func play_sfx(sfx_name: String):
+	if sfx_players.has(sfx_name):
+		var player = sfx_players[sfx_name]
+		if sfx_name == "footstep" and player.playing:
+			return
 		player.play()
 
 func play_music():
