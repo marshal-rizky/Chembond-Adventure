@@ -101,15 +101,14 @@ func _on_pickup_zone_area_exited(area):
 		nearby_elements.erase(area)
 
 func _on_element_collected(symbol):
-	# Play pick-up animation if available
-	var anim = get_node_or_null("AnimatedSprite2D")
-	if anim and anim.sprite_frames and anim.sprite_frames.has_animation("collect"):
-		anim.play("collect")
-		await anim.animation_finished
 	if not collected_elements.has(symbol):
 		collected_elements[symbol] = 0
 	collected_elements[symbol] += 1
 	collected_signal.emit(symbol)
+
+	var anim = get_node_or_null("AnimatedSprite2D")
+	if anim and anim.sprite_frames and anim.sprite_frames.has_animation("collect"):
+		anim.play("collect")
 
 func get_collected() -> Dictionary:
 	return collected_elements

@@ -19,11 +19,10 @@ texture = ExtResource("2_locked")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8vj7l")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = -2.0
-text = "LOCKED"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="LedGlow" type="Polygon2D" parent="."]
+position = Vector2(0, -11)
+color = Color(1, 0.27, 0.27, 0.35)
+
+[node name="Led" type="Polygon2D" parent="."]
+position = Vector2(0, -11)
+color = Color(1, 0.27, 0.27, 1)
