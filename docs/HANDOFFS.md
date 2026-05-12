@@ -1,90 +1,88 @@
-# ChemBond Adventure — Handoff Doc
-**Last updated:** 2026-05-06
+# ChemBond Adventure — Dokumen Handoff
+**Terakhir diperbarui:** 2026-05-06
 
 ---
 
-## What It Is
+## Apa Ini
 
-Top-down 2D chemistry maze game. Player navigates pixel-art ASCII maze, collects exact element atoms to form a molecule, exits through the gate. Gate opens **only** on exact inventory match — wrong atoms lock it.
+Game maze kimia 2D top-down dengan pixel art. Pemain menavigasi ASCII maze, mengumpulkan atom elemen yang tepat untuk membentuk molekul, lalu keluar melalui gate. Gate hanya terbuka **jika inventory persis cocok** — atom yang salah akan menguncinya.
 
-**Engine:** Godot 4.6 · **Language:** GDScript · **Platform:** Desktop + touch
+**Engine:** Godot 4.6 · **Bahasa:** GDScript · **Platform:** Desktop + touch
 
 ---
 
-## Three Modes
+## Tiga Mode
 
-| Mode | Description |
+| Mode | Deskripsi |
 |---|---|
-| **Normal** | 10 levels (H₂O → CH₃COOH). 20×15 maze, 3× scale. Decoy count scales with level. |
-| **Tutorial** | H₂O only. Gated 5-step interactive tutorial — atoms glow, decoy warning on wrong pick. |
-| **Legend** | 3 ultra-hard levels (Glucose, Ca-Phosphate, Al-Sulfate). 30×20 maze, 2× scale. Dual-player mirror mechanic — right player mirrors left's x-axis input. Both must reach center gate together. |
+| **Normal** | 10 level (H₂O → CH₃COOH). Maze 20×15, skala 3×. Jumlah decoy meningkat seiring level. |
+| **Tutorial** | H₂O saja. Tutorial interaktif 5 langkah dengan gating — atom bersinar, muncul peringatan jika salah ambil decoy. |
+| **Legend** | 3 level ultra-sulit (Glucose, Ca-Phosphate, Al-Sulfate). Maze 30×20, skala 2×. Mekanik dual-player mirror — pemain kanan mencerminkan input sumbu x pemain kiri. Keduanya harus mencapai center gate bersamaan. |
 
 ---
 
-## Architecture
+## Arsitektur
 
-- **Autoloads:** `GameManager` (level/mode state flags) · `AudioManager` (sfx + music)
-- **Entry:** `main_menu.tscn` → `main.tscn` (spawns everything at runtime)
-- **Maze:** ASCII layouts in `maze_manager.gd`, parsed to TileMapLayer + StaticBody2D walls at load
-- **Pathfinding:** BFS in `level_generator.gd` — validates spawn plans, ensures solvability
+- **Autoloads:** `GameManager` (flag state level/mode) · `AudioManager` (sfx + music)
+- **Entry:** `main_menu.tscn` → `main.tscn` (semua di-spawn saat runtime)
+- **Maze:** Layout ASCII di `maze_manager.gd`, di-parse menjadi TileMapLayer + dinding StaticBody2D saat load
+- **Pathfinding:** BFS di `level_generator.gd` — memvalidasi rencana spawn, memastikan level bisa diselesaikan
 - **Signals:** `element.collected` → `player.collected_signal` → `main._on_player_collected` → `gate.check_requirements`
 
 ---
 
-## Visual Identity
+## Identitas Visual
 
-**Theme:** Abandoned chemical lab on lockdown. System Shock / Alien aesthetic.
+**Tema:** Lab kimia terbengkalai dalam kondisi lockdown. Estetika System Shock / Alien.
 
-**Palette:** Deep navy `#070b14` · teal accent `#14b8a6` · teal-hi `#5eead4` · text `#cfeae6`
+**Palette:** Navy gelap `#070b14` · aksen teal `#14b8a6` · teal-hi `#5eead4` · teks `#cfeae6`
 
-**Player:** Scientist character (PixelLab AI `96105254-4d27-495a-98c6-61df38902d5b`), 48×48 frames, 4 directions × idle/walk/run/collect animations via `scientist.tres` SpriteFrames.
+**Player:** Karakter ilmuwan, frame 48×48, 4 arah × animasi idle/walk/run/collect via `scientist.tres` SpriteFrames.
 
-**Tileset:** Wang tileset `assets/tiles_wang.png` — wall at cell (0,3), floor at (2,1).
+**Tileset:** Wang tileset `assets/tiles_wang.png` — dinding di cell (0,3), lantai di (2,1).
 
-**Font:** Pixelify Sans (`assets/fonts/PixelifySans-Regular.ttf`), loaded via `UITheme.create_game_theme()`.
-
----
-
-## Current State (2026-05-06)
-
-**Completed and shipped:**
-- All 10 normal levels + tutorial + 3 legend levels — fully playable
-- Tutorial interactivity — gated steps, atom glow highlight, decoy warning
-- Visual polish pass — Pixelify Sans font, grid shader on menu, atom orb sprite, HUD button icons (↺ ✕ →), main menu logo row + colored dot particles
-- Scientist AnimatedSprite with directional walk/run/idle/collect animations
-- Vignette shader (dark red tint), screen shake, trail particles
-
-**In progress / next up:**
-- Element pickup hex chip redesign (orb → pixel-art hexagon via `_draw()`)
-- Main menu dense ghost element symbols (high-volume faint drifting)
-- Tutorial panel HUD restyle (step dots, styled OK button, dark bg)
-
-**Known issues:**
-- `legend_unlocked = true` hardcoded — should gate behind level 9 completion before shipping
-- Legend maze layouts may need BFS tuning — atom split by x<15 / x≥15 can leave one side sparse
+**Font:** Pixelify Sans (`assets/fonts/PixelifySans-Regular.ttf`), dimuat via `UITheme.create_game_theme()`.
 
 ---
 
-## Key Files
+## Status Saat Ini (2026-05-08)
 
-| File | Purpose |
+**Sudah selesai dan dirilis:**
+- Semua 10 level normal + tutorial + 3 level legend — sepenuhnya playable
+- Interaktivitas tutorial — langkah-langkah bertahap, sorotan glow pada atom, peringatan decoy
+- Polish visual — font Pixelify Sans, grid shader di menu, ikon tombol HUD (↺ ✕ →), baris logo main menu
+- AnimatedSprite ilmuwan dengan animasi walk/run/idle/collect per arah
+- Vignette shader (tint merah gelap), screen shake, partikel trail
+- Element pickup didesain ulang sebagai hex chip pixel art via `_draw()` — tanpa sprite, bobbing + glow pulse tetap ada
+- Panel tutorial direstyling sesuai estetika HUD — latar gelap, border teal atas, titik progres langkah, tombol OK bergaya
+- Ghost atom di main menu — 35 simbol elemen besar (α 0.12–0.22), didistribusikan grid 7×5, melayang pelan
+
+**Masalah yang diketahui:**
+- `legend_unlocked = true` di-hardcode — sebaiknya dikunci di balik penyelesaian level 9 sebelum rilis
+- Layout maze Legend mungkin perlu penyesuaian BFS — pembagian atom berdasarkan x<15 / x≥15 bisa membuat salah satu sisi terlalu kosong
+- Level selector terpotong di monitor 1366×768 — window 1280×720 tapi title bar + taskbar hanya menyisakan sekitar 698px tinggi, memotong baris bawah. Solusi: tambahkan `window/size/mode=2` (maximized) ke `project.godot`, atau geser offset LevelSelector ke atas 25px (`offset_top=-85`, `offset_bottom=-45`)
+
+---
+
+## File-file Utama
+
+| File | Fungsi |
 |---|---|
-| `CLAUDE.md` | Canonical architecture ref — node paths, audio keys, conventions |
-| `assets/questions.json` | All 13 level questions (10 normal + 3 legend, `"legend": true`) |
-| `scripts/game_manager.gd` | Mode flags: `is_tutorial`, `is_legend_mode`, `legend_level` |
-| `scripts/maze_manager.gd` | All ASCII maze layouts + load functions + spawn validation |
-| `scripts/level_generator.gd` | Static BFS helpers |
-| `scripts/player.gd` | Movement, collection, animation state machine, mirror input |
-| `scripts/tutorial_manager.gd` | 5-step gated tutorial sequence |
-| `scripts/ui_theme.gd` | Color constants + `create_game_theme()` |
-| `design/art-spec.md` | Pixel art asset specs (sizes, palette, delivery format) |
+| `assets/questions.json` | Semua 13 soal level (10 normal + 3 legend, `"legend": true`) |
+| `scripts/game_manager.gd` | Flag mode: `is_tutorial`, `is_legend_mode`, `legend_level` |
+| `scripts/maze_manager.gd` | Semua layout ASCII maze + fungsi load + validasi spawn |
+| `scripts/level_generator.gd` | Helper BFS statis |
+| `scripts/player.gd` | Pergerakan, pengumpulan, state machine animasi, mirror input |
+| `scripts/tutorial_manager.gd` | Urutan tutorial 5 langkah dengan gating |
+| `scripts/ui_theme.gd` | Konstanta warna + `create_game_theme()` |
+| `design/art-spec.md` | Spesifikasi asset pixel art (ukuran, palette, format pengiriman) |
 
 ---
 
-## Future Plans
+## Rencana ke Depan
 
-- Gate Legend mode behind level 9 completion (`legend_unlocked` flag)
-- Sound design pass — current SFX are placeholders
-- Mobile export — touch input already wired via virtual joystick
-- Leaderboard / time tracking per level (no backend yet)
-- Additional legend levels (3 → 5+)
+- Kunci mode Legend di balik penyelesaian level 9 (flag `legend_unlocked`)
+- Perbaikan sound design — SFX saat ini masih placeholder
+- Mobile export — input touch sudah terhubung via virtual joystick
+- Leaderboard / pelacakan waktu per level (belum ada backend)
+- Tambah level legend (3 → 5+)

@@ -1,24 +1,34 @@
+# main_menu.gd
+# Script untuk tampilan menu utama — ada tombol mulai game, tutorial, mode legend,
+# dan quit. Background dihiasi grid shader dan atom-atom yang melayang-layang.
 extends Control
 
 func _ready():
+	# Apply tema UI ke seluruh scene menu
 	theme = UITheme.create_game_theme()
 
+	# Bikin background grid dan logo game
 	_spawn_grid_bg()
 	_spawn_logo()
 
+	# Sambungin semua tombol ke fungsinya masing-masing
 	$VBoxContainer/StartBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_start_pressed())
 	$VBoxContainer/TutorialBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_tutorial_pressed())
 	$VBoxContainer/LegendBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_legend_btn_pressed())
 	$VBoxContainer/QuitBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _on_quit_pressed())
 	$LegendRulesPopup/VBox/GotItBtn.pressed.connect(_on_got_it_pressed)
 
+	# Disable tombol legend kalau belum di-unlock
 	$VBoxContainer/LegendBtn.disabled = not GameManager.legend_unlocked
 	$LegendRulesPopup.visible = false
 
+	# Mulai musik background
 	AudioManager.play_music()
+	# Spawn efek atom melayang di background
 	spawn_floating_atoms()
 
 func _spawn_grid_bg():
+	# Bikin background grid pakai custom shader — efek terminal sci-fi
 	var grid = ColorRect.new()
 	grid.name = "GridBg"
 	grid.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -37,6 +47,7 @@ func _spawn_grid_bg():
 	move_child(grid, 0)
 
 func _spawn_logo():
+	# Bikin logo game di bagian atas — ikon hexagon + teks "CHEMBOND ADVENTURE"
 	var hbox = HBoxContainer.new()
 	hbox.name = "LogoRow"
 	hbox.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
@@ -46,12 +57,14 @@ func _spawn_logo():
 	hbox.add_theme_constant_override("separation", 10)
 	add_child(hbox)
 
+	# Ikon hexagon dengan warna teal
 	var hex_lbl = Label.new()
 	hex_lbl.text = "⬡"
 	hex_lbl.add_theme_font_size_override("font_size", 32)
 	hex_lbl.add_theme_color_override("font_color", Color("#14b8a6"))
 	hbox.add_child(hex_lbl)
 
+	# Teks nama game dalam dua baris: judul besar + subtitle kecil
 	var vbox = VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 2)
 
@@ -72,6 +85,7 @@ func _spawn_logo():
 	hbox.add_child(vbox)
 
 func spawn_floating_atoms():
+	# Spawn label atom yang melayang di background — visual dekoratif buat menu utama
 	var element_colors = {
 		"H": Color.CYAN, "O": Color.RED, "C": Color.GRAY,
 		"Na": Color.YELLOW, "Cl": Color.GREEN, "N": Color.BLUE,
@@ -88,10 +102,12 @@ func spawn_floating_atoms():
 	var cell_w := 1280.0 / cols
 	var cell_h := 720.0 / rows
 
+	# Spawn satu atom per cell, posisi random dalam cell biar gak terlalu rapi
 	for row in range(rows):
 		for col in range(cols):
 			var sym: String = symbols[randi() % symbols.size()]
 			var col_val: Color = element_colors[sym]
+			# Opacity rendah biar gak ganggu elemen UI di depannya
 			col_val.a = randf_range(0.12, 0.22)
 
 			var px := col * cell_w + randf_range(cell_w * 0.1, cell_w * 0.9)
@@ -106,26 +122,31 @@ func spawn_floating_atoms():
 			lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			add_child(lbl)
 
+			# Tween melayang: gerak ke target random, balik ke posisi awal, loop
 			var tween = create_tween().set_loops()
 			var target = lbl.position + Vector2(randf_range(-80, 80), randf_range(-60, 60))
 			tween.tween_property(lbl, "position", target, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(lbl, "position", lbl.position, randf_range(6.0, 12.0)).set_ease(Tween.EASE_IN_OUT)
 
 func _on_start_pressed():
+	# Mulai game dari level 0 dalam mode normal
 	GameManager.reset_mode_flags()
 	GameManager.current_level = 0
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_tutorial_pressed():
+	# Mulai game dalam mode tutorial
 	GameManager.reset_mode_flags()
 	GameManager.is_tutorial = true
 	GameManager.current_level = 0
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_legend_btn_pressed():
+	# Tampilkan popup aturan mode legend sebelum masuk
 	$LegendRulesPopup.visible = true
 
 func _on_got_it_pressed():
+	# User udah baca aturan legend — tutup popup dan mulai mode legend
 	$LegendRulesPopup.visible = false
 	GameManager.reset_mode_flags()
 	GameManager.is_legend_mode = true
@@ -133,4 +154,5 @@ func _on_got_it_pressed():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_quit_pressed():
+	# Keluar dari game
 	get_tree().quit()
