@@ -40,9 +40,9 @@ func _ready():
 	$UI/HUD/HBar/LeaveBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _go_to_menu())
 
 	# Set teks label tombol
-	$UI/HUD/HBar/ResetBtn.text = "↺ Ulang"
-	$UI/HUD/HBar/LeaveBtn.text = "✕ Keluar"
-	$UI/WinOverlay/VBox/NextBtn.text = "Lanjut →"
+	$UI/HUD/HBar/ResetBtn.text = "Ulang"
+	$UI/HUD/HBar/LeaveBtn.text = "Keluar"
+	$UI/WinOverlay/VBox/NextBtn.text = "Lanjut >"
 
 	# Tombol di TutorialWinOverlay — balik ke menu utama setelah tutorial selesai
 	$UI/TutorialWinOverlay/VBox/MenuBtn.pressed.connect(func():
@@ -246,7 +246,7 @@ func _setup_tutorial(player: CharacterBody2D, exit_gate: Node):
 
 	# Tombol OK buat lanjut ke langkah tutorial berikutnya
 	var btn = Button.new()
-	btn.text = "OK ▶"
+	btn.text = "OK >"
 	btn.custom_minimum_size = Vector2(80, 0)
 	btn.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	btn.theme = UITheme.create_game_theme()

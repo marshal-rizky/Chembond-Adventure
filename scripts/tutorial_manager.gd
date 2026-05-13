@@ -112,7 +112,7 @@ func advance_step():
 	# Pindah ke langkah berikutnya — kasih feedback "Got it!" dulu baru lanjut
 	if step_complete: return
 	step_complete = true
-	panel_label.text += "\n\n[color=#14b8a6]✓ Mengerti![/color]"
+	panel_label.text += "\n\n[color=#14b8a6]> Mengerti![/color]"
 	# Tunggu bentar biar player sempat baca konfirmasi
 	await get_tree().create_timer(0.8).timeout
 	panel.visible = false
@@ -129,7 +129,7 @@ func _on_atom_collected(symbol: String):
 	elif not _showing_decoy_warning:
 		# Collect decoy — tampilkan peringatan sekali aja
 		_showing_decoy_warning = true
-		panel_label.text = "[color=#ef4444]⚠ Itu jebakan![/color] Atom berlebih membuat gerbang tetap [b]terkunci[/b].\n\nTekan [b]R[/b] atau ketuk [b]Ulang[/b] untuk coba lagi."
+		panel_label.text = "[color=#ef4444]!! Itu jebakan![/color] Atom berlebih membuat gerbang tetap [b]terkunci[/b].\n\nTekan [b]R[/b] atau ketuk [b]Ulang[/b] untuk coba lagi."
 		dismiss_btn.visible = false
 
 func notify_gate_opened():

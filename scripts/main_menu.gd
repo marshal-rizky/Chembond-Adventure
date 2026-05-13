@@ -59,7 +59,7 @@ func _spawn_logo():
 
 	# Ikon hexagon dengan warna teal
 	var hex_lbl = Label.new()
-	hex_lbl.text = "⬡"
+	hex_lbl.text = "[Cb]"
 	hex_lbl.add_theme_font_size_override("font_size", 32)
 	hex_lbl.add_theme_color_override("font_color", Color("#14b8a6"))
 	hbox.add_child(hex_lbl)
