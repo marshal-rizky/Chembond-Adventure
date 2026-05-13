@@ -1,15 +1,15 @@
 [
-  { "id": 1, "formula": "H2O", "required": {"H": 2, "O": 1}, "question": "What liquid do all living things need to survive?" },
-  { "id": 2, "formula": "CO2", "required": {"C": 1, "O": 2}, "question": "What gas do you exhale with every breath?" },
-  { "id": 3, "formula": "CH4", "required": {"C": 1, "H": 4}, "question": "What flammable gas is the main component of natural gas?" },
-  { "id": 4, "formula": "NaCl", "required": {"Na": 1, "Cl": 1}, "question": "What compound seasons your food and preserves meat?" },
-  { "id": 5, "formula": "H2SO4", "required": {"H": 2, "S": 1, "O": 4}, "question": "What powerful acid is used in car batteries?" },
-  { "id": 6, "formula": "NaOH", "required": {"Na": 1, "O": 1, "H": 1}, "question": "What caustic base is used to make soap?" },
-  { "id": 7, "formula": "NH4Cl", "required": {"N": 1, "H": 4, "Cl": 1}, "question": "What salt is used in cough medicine and fertilizers?" },
-  { "id": 8, "formula": "Ca(OH)2", "required": {"Ca": 1, "O": 2, "H": 2}, "question": "What compound is mixed into cement and treats acidic soil?" },
-  { "id": 9, "formula": "Na2CO3", "required": {"Na": 2, "C": 1, "O": 3}, "question": "What washing powder compound softens hard water?" },
-  { "id": 10, "formula": "CH3COOH", "required": {"C": 2, "H": 4, "O": 2}, "question": "What acid gives vinegar its sour taste and sharp smell?" },
-  { "id": 11, "formula": "C6H12O6", "required": {"C": 6, "H": 12, "O": 6}, "question": "What simple sugar fuels every living cell in your body?", "legend": true },
-  { "id": 12, "formula": "Ca3(PO4)2", "required": {"Ca": 3, "P": 2, "O": 8}, "question": "What mineral compound forms your bones and teeth?", "legend": true },
-  { "id": 13, "formula": "Al2(SO4)3", "required": {"Al": 2, "S": 3, "O": 12}, "question": "What compound is added to water treatment plants to remove impurities?", "legend": true }
+  { "id": 1, "formula": "H2O", "required": {"H": 2, "O": 1}, "question": "Cairan apa yang dibutuhkan semua makhluk hidup untuk bertahan?" },
+  { "id": 2, "formula": "CO2", "required": {"C": 1, "O": 2}, "question": "Gas apa yang kamu hembuskan setiap bernapas?" },
+  { "id": 3, "formula": "CH4", "required": {"C": 1, "H": 4}, "question": "Gas mudah terbakar apa yang menjadi komponen utama gas alam?" },
+  { "id": 4, "formula": "NaCl", "required": {"Na": 1, "Cl": 1}, "question": "Senyawa apa yang memberi rasa pada makanan dan mengawetkan daging?" },
+  { "id": 5, "formula": "H2SO4", "required": {"H": 2, "S": 1, "O": 4}, "question": "Asam kuat apa yang digunakan dalam aki mobil?" },
+  { "id": 6, "formula": "NaOH", "required": {"Na": 1, "O": 1, "H": 1}, "question": "Basa korosif apa yang digunakan untuk membuat sabun?" },
+  { "id": 7, "formula": "NH4Cl", "required": {"N": 1, "H": 4, "Cl": 1}, "question": "Garam apa yang digunakan dalam obat batuk dan pupuk?" },
+  { "id": 8, "formula": "Ca(OH)2", "required": {"Ca": 1, "O": 2, "H": 2}, "question": "Senyawa apa yang dicampurkan ke semen dan mengobati tanah asam?" },
+  { "id": 9, "formula": "Na2CO3", "required": {"Na": 2, "C": 1, "O": 3}, "question": "Senyawa bubuk pencuci apa yang melunakkan air sadah?" },
+  { "id": 10, "formula": "CH3COOH", "required": {"C": 2, "H": 4, "O": 2}, "question": "Asam apa yang memberi rasa masam dan aroma tajam pada cuka?" },
+  { "id": 11, "formula": "C6H12O6", "required": {"C": 6, "H": 12, "O": 6}, "question": "Gula sederhana apa yang menjadi bahan bakar setiap sel hidup dalam tubuhmu?", "legend": true },
+  { "id": 12, "formula": "Ca3(PO4)2", "required": {"Ca": 3, "P": 2, "O": 8}, "question": "Senyawa mineral apa yang membentuk tulang dan gigimu?", "legend": true },
+  { "id": 13, "formula": "Al2(SO4)3", "required": {"Al": 2, "S": 3, "O": 12}, "question": "Senyawa apa yang ditambahkan ke instalasi pengolahan air untuk menghilangkan kotoran?", "legend": true }
 ]

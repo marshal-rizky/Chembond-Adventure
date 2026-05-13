@@ -40,9 +40,9 @@ func _ready():
 	$UI/HUD/HBar/LeaveBtn.pressed.connect(func(): AudioManager.play_sfx("ui_click"); _go_to_menu())
 
 	# Set teks label tombol
-	$UI/HUD/HBar/ResetBtn.text = "↺ Reset"
-	$UI/HUD/HBar/LeaveBtn.text = "✕ Leave"
-	$UI/WinOverlay/VBox/NextBtn.text = "Next →"
+	$UI/HUD/HBar/ResetBtn.text = "↺ Ulang"
+	$UI/HUD/HBar/LeaveBtn.text = "✕ Keluar"
+	$UI/WinOverlay/VBox/NextBtn.text = "Lanjut →"
 
 	# Tombol di TutorialWinOverlay — balik ke menu utama setelah tutorial selesai
 	$UI/TutorialWinOverlay/VBox/MenuBtn.pressed.connect(func():
@@ -99,8 +99,8 @@ func _ready():
 	var current_q = GameManager.get_current_question()
 	if not current_q: return
 
-	$UI/HUD/HBar/ObjectiveLabel.text = "Objective: " + current_q.question
-	$UI/HUD/HBar/InventoryLabel.text = "Inventory: (empty)"
+	$UI/HUD/HBar/ObjectiveLabel.text = "Tujuan: " + current_q.question
+	$UI/HUD/HBar/InventoryLabel.text = "Inventaris: (kosong)"
 
 	# Tentukan jumlah decoy dan generate spawn plan untuk elemen
 	var spawn_plan
@@ -430,9 +430,9 @@ func _on_level_jump(index: int):
 func format_inventory(inventory: Dictionary) -> String:
 	# Format dictionary inventory jadi string yang enak dibaca di HUD
 	if inventory.is_empty():
-		return "Inventory: (empty)"
+		return "Inventaris: (kosong)"
 	var parts = []
 	for symbol in inventory:
 		if inventory[symbol] > 0:
 			parts.append(symbol + " ×" + str(inventory[symbol]))
-	return "Inventory: " + " | ".join(parts)
+	return "Inventaris: " + " | ".join(parts)

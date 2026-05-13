@@ -45,7 +45,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-text = "Objective: H2O"
+text = "Tujuan: H2O"
 vertical_alignment = 1
 
 [node name="InventoryLabel" type="Label" parent="UI/HUD/HBar"]
@@ -53,7 +53,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.85, 0.9, 1.0, 1)
 theme_override_font_sizes/font_size = 16
-text = "Inventory: (empty)"
+text = "Inventaris: (kosong)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,19 +61,19 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 12
-text = "WASD | R Reset"
+text = "WASD | R Ulang"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="ResetBtn" type="Button" parent="UI/HUD/HBar"]
 layout_mode = 2
 custom_minimum_size = Vector2(80, 0)
-text = "RESET"
+text = "ULANG"
 
 [node name="LeaveBtn" type="Button" parent="UI/HUD/HBar"]
 layout_mode = 2
 custom_minimum_size = Vector2(80, 0)
-text = "LEAVE"
+text = "KELUAR"
 
 [node name="LevelSelector" type="HBoxContainer" parent="UI"]
 anchors_preset = 7
@@ -159,14 +159,14 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 48
-text = "LEVEL COMPLETED!"
+text = "LEVEL SELESAI!"
 horizontal_alignment = 1
 
 [node name="NextBtn" type="Button" parent="UI/WinOverlay/VBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "CONTINUE"
+text = "LANJUT"
 
 [node name="MasterOverlay" type="ColorRect" parent="UI"]
 visible = false
@@ -197,19 +197,19 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "MASTER CHEMIST"
+text = "AHLI KIMIA"
 horizontal_alignment = 1
 
 [node name="Sub" type="Label" parent="UI/MasterOverlay/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "You have mastered all 10 stages!"
+text = "Kamu telah menguasai semua 10 tahap!"
 horizontal_alignment = 1
 
 [node name="RestartBtn" type="Button" parent="UI/MasterOverlay/VBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "RESTART GAME"
+text = "MAIN ULANG"
 
 [node name="TutorialManager" type="Node" parent="UI"]
 visible = false
@@ -244,20 +244,20 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0.6, 1)
 theme_override_font_sizes/font_size = 36
-text = "Tutorial Complete!"
+text = "Tutorial Selesai!"
 horizontal_alignment = 1
 
 [node name="Sub" type="Label" parent="UI/TutorialWinOverlay/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "You're ready to play ChemBond Adventure."
+text = "Kamu siap bermain ChemBond Adventure."
 horizontal_alignment = 1
 
 [node name="MenuBtn" type="Button" parent="UI/TutorialWinOverlay/VBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Back to Menu"
+text = "Kembali ke Menu"
 
 [node name="LegendaryOverlay" type="ColorRect" parent="UI"]
 visible = false
@@ -288,17 +288,17 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.843, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "LEGENDARY CHEMIST"
+text = "KIMIAWAN LEGENDARIS"
 horizontal_alignment = 1
 
 [node name="Sub" type="Label" parent="UI/LegendaryOverlay/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "You have mastered all of ChemBond Adventure!"
+text = "Kamu telah menguasai seluruh ChemBond Adventure!"
 horizontal_alignment = 1
 
 [node name="RestartBtn" type="Button" parent="UI/LegendaryOverlay/VBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Main Menu"
+text = "Menu Utama"

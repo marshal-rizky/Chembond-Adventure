@@ -35,27 +35,27 @@ const STEP_REACH     = 4
 # Definisi semua langkah tutorial — text, trigger, dan apakah perlu tombol dismiss
 var steps = [
 	{
-		"text": "Use [b]WASD[/b] / arrows or the [b]joystick[/b] to move.",
+		"text": "Gunakan [b]WASD[/b] / panah atau [b]joystick[/b] untuk bergerak.",
 		"trigger": "move",        # Auto-advance saat player mulai bergerak
 		"show_dismiss": false
 	},
 	{
-		"text": "Your [color=#5eead4][b]Objective[/b][/color] bar shows the molecule to form.",
+		"text": "Bar [color=#5eead4][b]Tujuan[/b][/color] menunjukkan molekul yang harus dibentuk.",
 		"trigger": "tap",         # Player harus tekan OK buat lanjut
 		"show_dismiss": true
 	},
 	{
-		"text": "[color=#5eead4]Glowing atoms[/color] are the ones you need.\n\nWalk over them to collect.",
+		"text": "[color=#5eead4]Atom bersinar[/color] adalah yang kamu butuhkan.\n\nJalan di atasnya untuk mengumpulkan.",
 		"trigger": "collect_required",  # Auto-advance saat collect element yang bener
 		"show_dismiss": false
 	},
 	{
-		"text": "Watch your [color=#5eead4][b]Inventory[/b][/color] fill up.\n\nThe gate opens when your atoms are an [b]exact match[/b].",
+		"text": "Perhatikan [color=#5eead4][b]Inventaris[/b][/color] terisi.\n\nGerbang terbuka jika atommu [b]cocok persis[/b].",
 		"trigger": "gate_open",   # Auto-advance saat gate terbuka
 		"show_dismiss": false
 	},
 	{
-		"text": "Gate is open! Walk through it to escape.",
+		"text": "Gerbang terbuka! Jalan melewatinya untuk keluar.",
 		"trigger": "tap",         # Player tekan OK, terus masuk gate
 		"show_dismiss": true
 	},
@@ -112,7 +112,7 @@ func advance_step():
 	# Pindah ke langkah berikutnya — kasih feedback "Got it!" dulu baru lanjut
 	if step_complete: return
 	step_complete = true
-	panel_label.text += "\n\n[color=#14b8a6]✓ Got it![/color]"
+	panel_label.text += "\n\n[color=#14b8a6]✓ Mengerti![/color]"
 	# Tunggu bentar biar player sempat baca konfirmasi
 	await get_tree().create_timer(0.8).timeout
 	panel.visible = false
@@ -129,7 +129,7 @@ func _on_atom_collected(symbol: String):
 	elif not _showing_decoy_warning:
 		# Collect decoy — tampilkan peringatan sekali aja
 		_showing_decoy_warning = true
-		panel_label.text = "[color=#ef4444]⚠ That's a decoy![/color] Extra atoms keep the gate [b]locked[/b].\n\nPress [b]R[/b] or tap [b]Reset[/b] to try again."
+		panel_label.text = "[color=#ef4444]⚠ Itu jebakan![/color] Atom berlebih membuat gerbang tetap [b]terkunci[/b].\n\nTekan [b]R[/b] atau ketuk [b]Ulang[/b] untuk coba lagi."
 		dismiss_btn.visible = false
 
 func notify_gate_opened():
