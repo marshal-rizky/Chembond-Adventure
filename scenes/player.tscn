@@ -1,32 +1,32 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cwr60bgyhpuuk"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
-[ext_resource type="SpriteFrames" path="res://assets/sprites/scientist.tres" id="2_frames"]
+[ext_resource type="Script" uid="uid://cj5v0itel3b6c" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="SpriteFrames" uid="uid://dgemm4n3u1y1d" path="res://assets/sprites/scientist.tres" id="2_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(12, 12)
+size = Vector2(7, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
-radius = 12.0
+radius = 6.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1806501390]
 z_index = 5
 motion_mode = 1
 script = ExtResource("1_player")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=691798709]
 scale = Vector2(0.33, 0.33)
-texture_filter = 0
 sprite_frames = ExtResource("2_frames")
-animation = &"idle"
+animation = &"run_east"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356102925]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="PickupZone" type="Area2D" parent="."]
+[node name="PickupZone" type="Area2D" parent="." unique_id=913573174]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone" unique_id=1367519218]
 shape = SubResource("CircleShape2D_pickup")

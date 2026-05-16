@@ -12,7 +12,7 @@ signal collected_signal(symbol)
 
 # Daftar element yang lagi dekat dengan player (masuk PickupZone)
 var nearby_elements: Array = []
-const COLLECTION_THRESHOLD: float = 10.0 # More generous feel (Tile is 16px)
+const COLLECTION_THRESHOLD: float = 14.0 # Generous — mencegah miss saat peluk tembok
 
 # Timer buat control seberapa sering trail di-spawn
 var trail_timer: float = 0.0
@@ -64,11 +64,20 @@ func _physics_process(delta):
 
 func check_precision_collection():
 	# Ngecek semua element yang ada di nearby_elements pakai swept segment check
-	# (dari posisi sebelumnya ke posisi sekarang) biar collect gak kelewatan
+	# (dari posisi sebelumnya ke posisi sekarang) + direct distance check biar
+	# collect gak kelewatan meskipun player lagi peluk tembok
 	var to_remove = []
 	for area in nearby_elements:
 		if not is_instance_valid(area):
 			to_remove.append(area)
+			continue
+
+		# Direct distance check — tangkap element yang sudah dekat saat ini
+		var direct_dist = global_position.distance_to(area.global_position)
+		if direct_dist < COLLECTION_THRESHOLD:
+			if area.has_method("collect"):
+				area.collect()
+				to_remove.append(area)
 			continue
 
 		# Swept collision check: find the closest point onto our movement segment
@@ -112,11 +121,10 @@ func spawn_trail():
 	tween.tween_callback(trail.queue_free).set_delay(0.4)
 
 func _on_pickup_zone_area_entered(area):
-	# Element masuk zona pickup — tambahkan ke daftar dan sambungin signal collected
-	if area.has_method("collect") and not area in nearby_elements:
-		nearby_elements.append(area)
-		if not area.collected.is_connected(_on_element_collected):
-			area.collected.connect(_on_element_collected)
+	# Element masuk zona pickup — langsung collect tanpa cek jarak
+	if area.has_method("collect"):
+		area.collect()
+		return
 
 func _on_pickup_zone_area_exited(area):
 	# Element keluar zona pickup — hapus dari daftar nearby
